@@ -16,10 +16,10 @@ class CookbookThemeApp extends StatelessWidget {
         ),
         body: new Center(
           child: new Container(
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             child: new Text(
               'Hello World',
-              style: Theme.of(context).textTheme.,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
         ),
