@@ -41,3 +41,5 @@ flutter 学习之路
 ##### Key、GlobalKey
 
 - 全局 key 在整个 widget 层次结构中必须是全局唯一的，局部 key 只需要在同级中唯一
+
+#### 布局
