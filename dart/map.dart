@@ -6,4 +6,7 @@ main() {
   mapA.remove("name");
   mapA.addAll({2: "hhh"});
   print(mapA.containsValue(4));
+
+  int? i;
+  print(i * 8);
 }
