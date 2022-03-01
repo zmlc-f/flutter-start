@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RouterMapWidget extends StatelessWidget {
-  RouterMapWidget({Key? key}) : super(key: key);
-
-  late Map<String, WidgetBuilder> routes;
+  const RouterMapWidget({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -13,8 +11,12 @@ class RouterMapWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: routes,
-      home: const MyHomePage(title: 'Home Page'),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => const MyHomePage(title: 'Home Page 222'),
+        "second": (context) => const NewRoute(),
+      },
+      // home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
@@ -61,17 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          var result = await Navigator.push(
+          var result = await Navigator.pushNamed(
             context,
-            MaterialPageRoute(
-              // fullscreenDialog: true,
-              builder: (BuildContext context) {
-                return const NewRoute(
-                  text: "222",
-                );
-              },
-              maintainState: false,
-            ),
+            "second",
+            arguments: "test $count",
           );
           print("路由返回值: $result");
         },
@@ -85,12 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class NewRoute extends StatelessWidget {
-  const NewRoute({Key? key, required this.text}) : super(key: key);
-
-  final String text;
+  const NewRoute({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var text =
+        ModalRoute.of(context)?.settings.arguments.toString() ?? "no data";
     return Scaffold(
       appBar: AppBar(
         title: const Text("New route"),
